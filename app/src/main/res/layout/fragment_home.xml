@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{() -> homeViewModel.reactToButtonPress()}"
             android:text="@{homeViewModel.text}"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"

@@ -1,6 +1,7 @@
 package com.mike.commitbrowser.di
 
 import android.content.Context
+import com.mike.commitbrowser.network.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     ActivityModule::class,
     ViewModelModule::class,
     AppModule::class,
-    HomeFragmentModule::class
+    HomeFragmentModule::class,
+    NetworkModule::class
     ]
 )
 
