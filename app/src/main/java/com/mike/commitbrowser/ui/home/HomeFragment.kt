@@ -11,11 +11,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mike.commitbrowser.R
 import com.mike.commitbrowser.databinding.FragmentHomeBinding
+import com.mike.commitbrowser.di.ViewModelFactory
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentHomeBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        AndroidSupportInjection.inject(this)
+        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,9 +39,6 @@ class HomeFragment : Fragment() {
             inflater, R.layout.fragment_home,
             container, false
         )
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
         binding.homeViewModel = homeViewModel
         binding.lifecycleOwner = this
 
