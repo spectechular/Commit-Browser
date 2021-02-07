@@ -16,7 +16,9 @@ import javax.inject.Singleton
     ViewModelModule::class,
     AppModule::class,
     HomeFragmentModule::class,
-    NetworkModule::class
+    NetworkModule::class,
+    CommitRepositoryModule::class,
+    CommitItemApiModule::class
     ]
 )
 
