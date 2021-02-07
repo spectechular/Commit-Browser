@@ -43,11 +43,13 @@ class HomeFragment : Fragment() {
         binding.homeViewModel = homeViewModel
         binding.lifecycleOwner = this
 
-        /*homeViewModel.commits.observe(viewLifecycleOwner, Observer {
+        homeViewModel.commits.observe(viewLifecycleOwner, Observer {
             it?.let {
-                Log.d("miker", it.toString())
+                for (item in it){
+                    Log.d("miker", item.commit.message)
+                }
             }
-        })*/
+        })
 
         return binding.root
     }
