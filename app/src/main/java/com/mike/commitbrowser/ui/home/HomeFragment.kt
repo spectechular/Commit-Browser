@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.mike.commitbrowser.R
+import com.mike.commitbrowser.adapters.CommitItemAdapter
 import com.mike.commitbrowser.databinding.FragmentHomeBinding
 import com.mike.commitbrowser.di.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
@@ -41,13 +42,17 @@ class HomeFragment : Fragment() {
             container, false
         )
         binding.homeViewModel = homeViewModel
+
+        val adapter = CommitItemAdapter()
+
+        binding.recyclerviewCommits.adapter = adapter
+
         binding.lifecycleOwner = this
 
+        // Observe commits from vm and update list on changes
         homeViewModel.commits.observe(viewLifecycleOwner, Observer {
             it?.let {
-                for (item in it){
-                    Log.d("miker", item.commit.message)
-                }
+                adapter.submitList(it)
             }
         })
 
