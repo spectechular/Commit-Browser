@@ -18,19 +18,14 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
     private val _commits = MutableLiveData<List<CommitItem>>()
     val commits: LiveData<List<CommitItem>> get() = _commits
 
-    private val _loadingState = MutableLiveData<Boolean>(false)
-    val loadingState: LiveData<Boolean> get() = _loadingState
-
     init {
         loadCommits()
     }
 
     private fun loadCommits() {
-        _loadingState.value = true
         viewModelScope.launch {
             _commits.value = repository.getCommitItems()
         }
-        _loadingState.value = false
     }
 
 }
