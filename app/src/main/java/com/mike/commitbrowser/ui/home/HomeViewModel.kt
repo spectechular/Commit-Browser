@@ -20,8 +20,6 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
     fun reactToButtonPress() {
         viewModelScope.launch {
             _commits.value = repository.getCommitItems()
-            Log.d("miker", repository.toString())
-            Log.d("miker", commits.toString())
         }
     }
 
