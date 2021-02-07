@@ -30,6 +30,7 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
         viewModelScope.launch {
             _commits.value = repository.getCommitItems()
         }
+        _loadingState.value = false
     }
 
 }
