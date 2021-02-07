@@ -19,7 +19,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/card_commit_author_text_view"
@@ -27,30 +28,43 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:text="@{commit.commit.author.name}"
+                android:textSize="24sp"
+                android:text="@{`Author: ` +commit.commit.author.name}"
                 tools:text="Bugs Bunny"
-                style="@style/TextAppearance.MaterialComponents.Headline5"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/card_commit_hash_text_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{commit.sha}"
+                android:text="@{`#: `+commit.sha}"
+                android:textStyle="italic|bold"
                 app:layout_constraintTop_toBottomOf="@id/card_commit_author_text_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="064d6d083bf435b87ea1984e7f31136b9f71ea9e" />
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                app:layout_constraintTop_toBottomOf="@id/card_commit_hash_text_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/design_default_color_secondary"
+                />
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/card_commit_message_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:textSize="20sp"
                 android:text="@{commit.commit.message}"
-                app:layout_constraintTop_toBottomOf="@id/card_commit_hash_text_view"
+                style="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintTop_toBottomOf="@id/divider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 tools:text="updated color scheme"
-                style="@style/TextAppearance.MaterialComponents.Headline5"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
