@@ -18,9 +18,6 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
     private val _commits = MutableLiveData<List<CommitItem>>()
     val commits: LiveData<List<CommitItem>> get() = _commits
 
-    private val _errorState = MutableLiveData<Boolean>(false)
-    val errorState: LiveData<Boolean> get() = _errorState
-
     private val _loadingState = MutableLiveData<Boolean>(false)
     val loadingState: LiveData<Boolean> get() = _loadingState
 
@@ -29,19 +26,10 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
     }
 
     private fun loadCommits() {
-        _errorState.value = false
         _loadingState.value = true
-        try {
-            viewModelScope.launch {
-                _commits.value = repository.getCommitItems()
-            }
-        } catch (throwable: Throwable){
-            _errorState.value = true
+        viewModelScope.launch {
+            _commits.value = repository.getCommitItems()
         }
-        finally {
-            _loadingState.value = false
-        }
-
     }
 
 }
