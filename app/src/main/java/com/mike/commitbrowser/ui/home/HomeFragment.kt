@@ -1,6 +1,7 @@
 package com.mike.commitbrowser.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,6 +42,12 @@ class HomeFragment : Fragment() {
         )
         binding.homeViewModel = homeViewModel
         binding.lifecycleOwner = this
+
+        /*homeViewModel.commits.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Log.d("miker", it.toString())
+            }
+        })*/
 
         return binding.root
     }
