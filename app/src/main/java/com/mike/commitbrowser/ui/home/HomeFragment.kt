@@ -41,13 +41,17 @@ class HomeFragment : Fragment() {
             inflater, R.layout.fragment_home,
             container, false
         )
-        binding.homeViewModel = homeViewModel
 
+        //Set up recyclewview adapter
         val adapter = CommitItemAdapter()
+
+        // Set databinding bindings
+        binding.homeViewModel = homeViewModel
 
         binding.recyclerviewCommits.adapter = adapter
 
         binding.lifecycleOwner = this
+
 
         // Observe commits from vm and update list on changes
         homeViewModel.commits.observe(viewLifecycleOwner, Observer {
