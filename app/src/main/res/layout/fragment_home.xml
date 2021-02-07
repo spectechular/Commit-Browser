@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
+        <import type="android.view.View"/>
+        <variable
     name="homeViewModel"
     type="com.mike.commitbrowser.ui.home.HomeViewModel" />
     </data>
