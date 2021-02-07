@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 
 interface GithubService{
-    @GET("/repos/spectechular/commit-browser/commits")
+    @GET("/repos/spectechular/test-no-commits-on-repo/commits")
     suspend fun getCommits() : List<CommitItem>
 
 }
