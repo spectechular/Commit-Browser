@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
             viewModelScope.launch {
                 _commits.value = repository.getCommitItems()
             }
-        } catch (e: Exception){
+        } catch (throwable: Throwable){
             _errorState.value = true
         }
         finally {
