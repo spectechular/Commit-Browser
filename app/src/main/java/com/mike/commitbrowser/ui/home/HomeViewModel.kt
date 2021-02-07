@@ -17,7 +17,11 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
     private val _commits= MutableLiveData<List<CommitItem>>()
     val commits : LiveData<List<CommitItem>> get() = _commits
 
-    fun reactToButtonPress() {
+
+    init {
+        loadCommits()
+    }
+    private fun loadCommits() {
         viewModelScope.launch {
             _commits.value = repository.getCommitItems()
         }
