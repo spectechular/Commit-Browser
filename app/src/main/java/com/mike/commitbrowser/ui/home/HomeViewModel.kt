@@ -12,12 +12,17 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private var repository: ICommitRepository) : ViewModel() {
 
-    val text = MutableLiveData<String>().apply {
-        value = "Commits"
-    }
-    private val _commits = MutableLiveData<List<CommitItem>>()
-    val commits: LiveData<List<CommitItem>> get() = _commits
 
+    private val _commits = MutableLiveData<List<CommitItem>>(emptyList())
+    val commits: LiveData<List<CommitItem>> get() = _commits
+    
+    val text = Transformations.map(_commits){
+        if (!it.isNullOrEmpty()){
+            return@map "Commits: ${it.size}"
+        }else{
+            return@map "Commits:"
+        }
+    }
     init {
         loadCommits()
     }
