@@ -1,6 +1,5 @@
 package com.mike.commitbrowser.model
 
-
 data class CommitItem(
     val author: Author,
     val comments_url: String,
