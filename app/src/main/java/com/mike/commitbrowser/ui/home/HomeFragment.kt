@@ -15,6 +15,11 @@ import com.mike.commitbrowser.adapters.CommitItemAdapter
 import com.mike.commitbrowser.databinding.FragmentHomeBinding
 import com.mike.commitbrowser.di.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeFragment : Fragment() {
@@ -57,8 +62,15 @@ class HomeFragment : Fragment() {
         homeViewModel.commits.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+                binding.refreshLayout.isRefreshing = false
             }
         })
+
+        //Refresh the info on Swipe-Refresh
+        binding.refreshLayout.setOnRefreshListener {
+            homeViewModel.loadCommits()
+        }
+
 
         return binding.root
     }

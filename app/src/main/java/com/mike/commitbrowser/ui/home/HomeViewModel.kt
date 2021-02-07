@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(private var repository: ICommitRepositor
     }
 
     //Main method for getting commits
-    private fun loadCommits() {
+     fun loadCommits() {
         viewModelScope.launch {
             _commits.value = repository.getCommitItems()
         }
